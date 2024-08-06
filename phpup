@@ -1,0 +1,70 @@
+#!/usr/bin/env php
+<?php
+
+if (!defined('PHPUP_PHP_BINARY')) {
+    define('PHPUP_PHP_BINARY', __DIR__ . '/php/bin/php');
+}
+
+if ($argc < 2) {
+    fwrite(STDERR, "Not enough arguments\n");
+    exit(1);
+}
+
+$command = $argv[1];
+$binDir = __DIR__ . '/bin/';
+
+function execute_command($path, $args, $env = null)
+{
+    $cmd = escapeshellcmd($path) . ' ' . implode(' ', array_map('escapeshellarg', $args));
+    $descriptor_spec = [
+        0 => STDIN,
+        1 => STDOUT,
+        2 => STDERR,
+    ];
+
+    // Get the current environment
+    $currentEnv = $_ENV;
+
+    // If additional environment variables are provided, merge them
+    if (is_array($env)) {
+        $currentEnv = array_merge($currentEnv, $env);
+    }
+
+    $process = proc_open($cmd, $descriptor_spec, $pipes);
+
+    if (is_resource($process)) {
+        return proc_close($process);
+    }
+    return 1; // In case of a failure in proc_open
+}
+
+// Use a switch statement for command-specific logic
+switch ($command) {
+    case 'composer':
+        array_shift($argv);
+        $exitCode = execute_command(PHPUP_PHP_BINARY, [$binDir . 'composer'] + $argv);
+        break;
+    case 'shell':
+        array_shift($argv);
+        $exitCode = execute_command(PHPUP_PHP_BINARY, [$binDir . 'psysh'] + $argv);
+        break;
+    case 'conductor':
+        array_shift($argv);
+        $env = ['CONDUCTOR_COMPOSER_BIN' => $binDir . 'composer'];
+        $exitCode = execute_command(PHPUP_PHP_BINARY, [$binDir . 'conductor'] + $argv, $env);
+        break;
+    case 'locus':
+        echo "phpup locus command is not implemented yet.\n";
+        $exitCode = 0;
+        break;
+    case 'upgrade':
+        echo "phpup upgrade command is not implemented yet.\n";
+        $exitCode = 0;
+        break;
+    default:
+        // Proxy all other commands to the PHP binary
+        $exitCode = execute_command(PHPUP_PHP_BINARY, array_slice($argv, 1));
+        break;
+}
+
+exit($exitCode);
