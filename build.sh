@@ -4,37 +4,41 @@ set -e
 rm -rf ./build/phpup
 rm -rf ./build/index.*
 
-box compile
-mkdir -p ./build
-mv index.phar ./build/
+# Ensure dependencies are up to date
+composer install --no-dev
 
-# Detect OS and architecture
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    OS="macos"
-    if [[ $(uname -m) == "arm64" ]]; then
-        ARCH="aarch64"
-    else
-        ARCH="x86_64"
-    fi
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    OS="linux"
-    if [[ $(uname -m) == "aarch64" ]]; then
-        ARCH="aarch64"
-    else
-        ARCH="x86_64"
-    fi
-else
-    echo "Unsupported operating system"
+# Compile the phar
+./vendor/bin/box compile
+
+cd build || exit 1
+
+# Download the static-php-cli binary
+echo "Downloading static-php-cli..."
+curl -fsSL -o spc https://dl.static-php.dev/static-php-cli/spc-bin/nightly/spc-macos-aarch64
+chmod +x ./spc
+
+# Check spc version
+echo "static-php-cli version:"
+./spc --version
+
+# Download necessary sources
+echo "Downloading sources..."
+./spc download --for-extensions="openssl,pcntl,mbstring,phar,posix,zlib,curl,fileinfo,filter,session,tokenizer" --with-php=8.3
+
+# Use static-php-cli to build PHP with micro SAPI
+echo "Building PHP with micro SAPI..."
+./spc build "openssl,pcntl,mbstring,phar,posix,zlib,curl,fileinfo,filter,session,tokenizer" --build-micro --debug
+
+# Check if micro.sfx was created
+if [ ! -f "./buildroot/bin/micro.sfx" ]; then
+    echo "Error: micro.sfx not found. Build may have failed."
     exit 1
 fi
 
-# Construct the download URL
-PHP_VERSION="8.3.6"
-DOWNLOAD_URL="https://dl.static-php.dev/static-php-cli/common/php-${PHP_VERSION}-micro-${OS}-${ARCH}.tar.gz"
+# Combine micro.sfx with index.phar
+echo "Combining micro.sfx with index.phar..."
+./spc micro:combine ./index.phar --output phpup
 
-# Download and extract
-cd build || exit
-echo "Downloading from: $DOWNLOAD_URL"
-curl -L -O "$DOWNLOAD_URL"
-tar -xvf "php-${PHP_VERSION}-micro-${OS}-${ARCH}.tar.gz"
-cat ./micro.sfx ./index.phar >./phpup && chmod 0755 ./phpup
+chmod 0755 ./phpup
+
+echo "Build completed successfully"

@@ -1,11 +1,28 @@
 {
-  "files": [
-    
-  ],
-  "files-bin": [
-    "vendor/bin/var-dump-server"
-  ],
   "directories": [
-    "vendor"
-  ]
+    "src"
+  ],
+  "files": [
+    "vendor/autoload.php"
+  ],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": [
+        "test",
+        "tests",
+        "Test",
+        "Tests",
+        "doc",
+        "docs"
+      ],
+      "in": "vendor"
+    }
+  ],
+  "compression": "GZ",
+  "compactors": [
+    "KevinGH\\Box\\Compactor\\Php"
+  ],
+  "main": "index.php",
+  "output": "build/index.phar"
 }
