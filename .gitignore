@@ -4,3 +4,6 @@
 /tmp/
 /composer.lock
 /patches.lock.json
+.idea/
+.vscode/
+*.phar

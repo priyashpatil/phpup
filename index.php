@@ -2,41 +2,30 @@
 
 const PHPUP_VERSION = '0.2.0';
 
-if (!isset($argv[1])) {
-    echo "Not enough arguments \n";
-    exit(1);
+// Ensure Phar extension is loaded
+if (!extension_loaded('phar')) {
+    die("Phar extension is not loaded. Please rebuild with Phar support.\n");
 }
 
-// @TODO Handle restart
-putenv("COMPOSER_ALLOW_XDEBUG=1");
-putenv("PHPSTAN_ALLOW_XDEBUG=1");
-putenv("RECTOR_ALLOW_XDEBUG=1");
-
-$command = escapeshellcmd($argv[1]);
-$vendorBinPath = __DIR__ . '/vendor/bin/';
-
-if ('list' === $command) {
-    $files = scandir($vendorBinPath);
-    foreach ($files as $file) {
-        if ($file === '.' || $file === '..') { continue; }
-        echo $file . "\n";
-    }
-    exit;
+// Set up autoloader
+$autoloadPath = __DIR__ . '/vendor/autoload.php';
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+} else {
+    die("Autoloader not found. Please ensure the project is correctly built.\n");
 }
 
-if ('--version' === $command) {
-    echo 'phpup v', PHPUP_VERSION, ', with PHP v', PHP_VERSION, "\n";
-    exit;
-}
+use Symfony\Component\Console\Application;
+use Pronskiy\Phpup\Command\ListCommand;
+use Pronskiy\Phpup\Command\ComposerCommand;
+use Pronskiy\Phpup\Command\ConductorCommand;
+use Pronskiy\Phpup\Command\LocusCommand;
 
-array_shift($_SERVER['argv']);
+$application = new Application('phpup', PHPUP_VERSION);
 
-$pathToBinary = $vendorBinPath . $command;
-if (file_exists($pathToBinary)) {
-    require_once $pathToBinary;
-    exit;
-} else if (file_exists($command)) {
-    require_once $command;
-    exit;
-}
-exit(1);
+$application->add(new ListCommand());
+$application->add(new ComposerCommand());
+$application->add(new ConductorCommand());
+// $application->add(new LocusCommand());
+
+$application->run();
