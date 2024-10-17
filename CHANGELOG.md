@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/priyashpatil/phpup/compare/v0.1.3...v0.2.0) (2024-10-17)
+
+
+### Features
+
+* add linux install ([8dcde9c](https://github.com/priyashpatil/phpup/commit/8dcde9c65bdea87da6c6c97c50da124b326ca77c))
+
 ## [0.1.3](https://github.com/priyashpatil/phpup/compare/v0.1.2...v0.1.3) (2024-10-17)
 
 
