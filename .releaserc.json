@@ -1,13 +1,35 @@
 {
-    "branches": [
-        "main"
-    ],
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
-        "@semantic-release/github",
+        [
+            "@semantic-release/github",
+            {
+                "assets": [
+                    {
+                        "path": "build/phpup-linux-amd64",
+                        "label": "Linux AMD64"
+                    },
+                    {
+                        "path": "build/phpup-linux-arm64",
+                        "label": "Linux ARM64"
+                    },
+                    {
+                        "path": "build/phpup-darwin-amd64",
+                        "label": "macOS AMD64"
+                    },
+                    {
+                        "path": "build/phpup-darwin-arm64",
+                        "label": "macOS ARM64"
+                    },
+                    {
+                        "path": "build/phpup-windows-amd64.exe",
+                        "label": "Windows AMD64"
+                    }
+                ]
+            }
+        ],
         "@semantic-release/git"
-    ],
-    "initialVersion": "0.0.1"
+    ]
 }
