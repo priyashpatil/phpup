@@ -1,9 +1,15 @@
 # phpup
 
-phpup 🚀 is a CLI tool to manage PHP environments.
+phpup - CLI tool for managing PHP environments
 
 ## Build
 
 ```sh
 go build
+```
+
+## Testing
+
+```sh
+go test ./tests
 ```
