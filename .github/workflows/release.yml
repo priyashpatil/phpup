@@ -27,20 +27,7 @@ jobs:
       - name: Install dependencies
         run: go mod download
 
-      - name: Install semantic-release
-        run: |
-          npm install -g semantic-release @semantic-release/github @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator
-
-      - name: Semantic Release
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
-
       - name: Build for multiple platforms
-        if: steps.semantic.outputs.new_release_published == 'true'
-        env:
-          VERSION: ${{ steps.semantic.outputs.new_release_version }}
         run: |
           GOOS=linux GOARCH=amd64 go build -o build/phpup-linux-amd64
           GOOS=linux GOARCH=arm64 go build -o build/phpup-linux-arm64
@@ -48,15 +35,11 @@ jobs:
           GOOS=darwin GOARCH=arm64 go build -o build/phpup-darwin-arm64
           GOOS=windows GOARCH=amd64 go build -o build/phpup-windows-amd64.exe
 
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        if: steps.semantic.outputs.new_release_published == 'true'
-        with:
-          files: |
-            build/phpup-linux-amd64
-            build/phpup-linux-arm64
-            build/phpup-darwin-amd64
-            build/phpup-darwin-arm64
-            build/phpup-windows-amd64.exe
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release @semantic-release/github @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+
+      - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
