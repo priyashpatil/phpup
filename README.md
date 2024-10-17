@@ -2,18 +2,6 @@
 
 phpup - CLI tool for managing PHP environments
 
-## Build
-
-```sh
-go build
-```
-
-## Testing
-
-```sh
-go test ./tests
-```
-
 ## Roadmap
 
 - [ ] Easy to install cross platform script
@@ -33,6 +21,18 @@ Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
 Commit message standards are based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+### Build
+
+```sh
+go build
+```
+
+### Testing
+
+```sh
+go test ./tests
+```
 
 Step Debugging with VSCode:
 
