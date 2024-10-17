@@ -12,15 +12,14 @@ curl -fsSL https://raw.githubusercontent.com/priyashpatil/phpup/main/install/mac
 
 ## Roadmap
 
+- [x] Simple cross platform automated build
 - [ ] Easy to install cross platform script
 - [ ] Base php install
 - [ ] Built in Composer
 - [ ] Multiple PHP installs
 - [ ] Switching PHP versions
 - [ ] Opt in Xdebug install
-
 - [ ] Doctor
-- [ ] Update
 - [ ] Extensions
 - [ ] Docker Images
 
