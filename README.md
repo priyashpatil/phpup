@@ -4,10 +4,10 @@ phpup - CLI tool for managing PHP environments
 
 ## Installation
 
-macOS
+macOS and linux
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/priyashpatil/phpup/main/install/mac.sh | bash
+curl -fsSL https://raw.githubusercontent.com/priyashpatil/phpup/main/install/unix.sh | bash
 ```
 
 ## Roadmap
