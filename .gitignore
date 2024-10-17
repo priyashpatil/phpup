@@ -1,7 +1,21 @@
-/vendor/
-/build/
-/.box_dump/
-/tmp/
-/composer.lock
-/patches.lock.json
 .DS_Store
+
+# Binaries for programs and plugins
+phpup
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
