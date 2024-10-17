@@ -2,18 +2,33 @@
 
 phpup - CLI tool for managing PHP environments
 
+Here's a rewritten version of the installation section:
+
 ## Installation
 
-macOS
+### macOS and Linux
+
+To install on macOS or Linux, run the following command in your terminal:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/priyashpatil/phpup/main/install/mac.sh | bash
+curl -fsSL https://raw.githubusercontent.com/priyashpatil/phpup/main/install/unix.sh | bash
+```
+
+### Windows
+
+For Windows 64-bit, follow these steps:
+
+1. Open PowerShell as Administrator
+2. Run the following command:
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/priyashpatil/phpup/main/install/windows.ps1 | iex
 ```
 
 ## Roadmap
 
 - [x] Simple cross platform automated build
-- [ ] Easy to install cross platform script
+- [x] Easy to install cross platform script
 - [ ] Base php install
 - [ ] Built in Composer
 - [ ] Multiple PHP installs
