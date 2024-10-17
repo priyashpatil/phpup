@@ -9,9 +9,10 @@ phpup - CLI tool for managing PHP environments
 - [ ] Built in Composer
 - [ ] Multiple PHP installs
 - [ ] Switching PHP versions
-- [ ] 12 factor php install
 - [ ] Opt in Xdebug install
 
+- [ ] Doctor
+- [ ] Update
 - [ ] Extensions
 - [ ] Docker Images
 
