@@ -19,3 +19,7 @@ phpup
 
 # Go workspace file
 go.work
+
+# Build artifacts
+build/
+phpup-*
