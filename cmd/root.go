@@ -30,13 +30,10 @@ var rootCmd = &cobra.Command{
 	Use:   "phpup",
 	Short: "Manage PHP environments 🐘",
 	Long: `phpup - CLI tool to manage PHP environments 🚀
-
-  • Install multiple PHP versions 📥
-  • Switch between versions 🔄
-  • Update PHP installations 🆙
-  • Painless XDebug setup 🐞
-
-Run 'phpup --help' for usage information.
+  
+phpup 0.0.1 (build: dev)
+Composer version unknown
+PHP version unknown
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
@@ -88,4 +85,10 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
 	}
+}
+
+// GetRootCmd returns the root command for the application.
+// This allows external packages to access the root command for testing.
+func GetRootCmd() *cobra.Command {
+	return rootCmd
 }

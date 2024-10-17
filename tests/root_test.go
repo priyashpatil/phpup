@@ -32,3 +32,23 @@ func TestExecute(t *testing.T) {
 		assert.NotContains(t, output, "Error:")
 	})
 }
+
+func TestRootCmdOutput(t *testing.T) {
+	// Create a new command for testing to avoid side effects
+	rootCmd := cmd.GetRootCmd() // Use a function to get the root command
+	buf := new(bytes.Buffer)
+	rootCmd.SetOut(buf)
+	rootCmd.SetErr(buf)
+
+	// Execute the command with the --help flag
+	rootCmd.SetArgs([]string{"--help"})
+	err := rootCmd.Execute()
+
+	assert.NoError(t, err)
+	output := buf.String()
+
+	assert.Contains(t, output, "phpup - CLI tool to manage PHP environments 🚀")
+	assert.Contains(t, output, "phpup 0.0.1 (build: dev)")
+	assert.Contains(t, output, "Composer version unknown")
+	assert.Contains(t, output, "PHP version unknown")
+}
