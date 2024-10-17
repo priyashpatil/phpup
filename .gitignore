@@ -1,11 +1,3 @@
-/vendor/
-/build/
-/.box_dump/
-/tmp/
-/composer.lock
-/patches.lock.json
-.idea/
-.vscode/
-*.phar
 phpup
 phpup.exe
+.DS_Store
