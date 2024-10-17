@@ -4,4 +4,8 @@
 /tmp/
 /composer.lock
 /patches.lock.json
-.DS_Store
+.idea/
+.vscode/
+*.phar
+phpup
+phpup.exe
