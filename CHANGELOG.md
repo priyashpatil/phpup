@@ -1,3 +1,11 @@
+## [0.1.2](https://github.com/priyashpatil/phpup/compare/v0.1.1...v0.1.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* build artifact ([00dc40a](https://github.com/priyashpatil/phpup/commit/00dc40aff0421d4861c10f55b07e6864d191b4a5))
+* **ci:** build ([e2d9bd4](https://github.com/priyashpatil/phpup/commit/e2d9bd45310fdf4bae7a64560a64177e0869b23f))
+
 ## [0.1.1](https://github.com/priyashpatil/phpup/compare/v0.1.0...v0.1.1) (2024-10-17)
 
 
