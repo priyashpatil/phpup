@@ -1,3 +1,10 @@
+## [0.1.3](https://github.com/priyashpatil/phpup/compare/v0.1.2...v0.1.3) (2024-10-17)
+
+
+### Bug Fixes
+
+* mac install script ([70a44ec](https://github.com/priyashpatil/phpup/commit/70a44ec72d016fd08e52bb3f40495b4fe1baa1cf))
+
 ## [0.1.2](https://github.com/priyashpatil/phpup/compare/v0.1.1...v0.1.2) (2024-10-17)
 
 
