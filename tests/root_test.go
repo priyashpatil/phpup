@@ -7,6 +7,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/priyashpatil/phpup/cmd"
 )
 
 func TestExecute(t *testing.T) {
@@ -16,7 +18,7 @@ func TestExecute(t *testing.T) {
 		r, w, _ := os.Pipe()
 		os.Stdout = w
 
-		Execute()
+		cmd.Execute()
 
 		// Restore stdout
 		w.Close()
