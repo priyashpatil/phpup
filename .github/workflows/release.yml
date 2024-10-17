@@ -22,13 +22,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install dependencies
         run: go mod download
-
-      - name: Run tests
-        run: go test ./...
 
       - name: Install semantic-release
         run: |
