@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/priyashpatil/phpup/compare/v0.2.0...v0.3.0) (2024-10-17)
+
+
+### Features
+
+* add windows install script ([d7f2669](https://github.com/priyashpatil/phpup/commit/d7f2669b82bee9bf0dab4656fdd58371386eeba2))
+
 # [0.2.0](https://github.com/priyashpatil/phpup/compare/v0.1.3...v0.2.0) (2024-10-17)
 
 
