@@ -1,8 +1,6 @@
 # phpup
 
-phpup - CLI tool for managing PHP environments
-
-Here's a rewritten version of the installation section:
+phpup - CLI tool for managing PHP environments.
 
 ## Installation
 
@@ -34,6 +32,7 @@ iwr -useb https://raw.githubusercontent.com/priyashpatil/phpup/main/install/wind
 - [ ] Multiple PHP installs
 - [ ] Switching PHP versions
 - [ ] Opt in Xdebug install
+- [ ] Per project PHP installation
 - [ ] Doctor
 - [ ] Extensions
 - [ ] Docker Images
