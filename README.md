@@ -2,9 +2,21 @@
 
 PHP environment toolchain for **macOS**.
 
-> phpup relies on homebrew-installed PHP. This means multiple PHP versions must be installed with homebrew first.
+## Features
+
+- Auto switching between PHP versions based on the project's composer.json file.
+
+## Requirements
+
+- phpup relies on homebrew-installed PHP. This means multiple PHP versions must be installed with homebrew first.
 
 ## Installing phpup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/priyashpatil/phpup.git
+```
 
 Run the installation script by executing the following command:
 
