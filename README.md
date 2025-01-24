@@ -9,7 +9,7 @@ PHP environment toolchain for **macOS**.
 Run the installation script by executing the following command:
 
 ```bash
-bash ./install.sh
+./bin/install.sh
 ```
 
 Add the following line to your `~/.bashrc` or `~/.zshrc` file:
@@ -18,7 +18,7 @@ Add the following line to your `~/.bashrc` or `~/.zshrc` file:
 source ~/.phpup/source.sh
 ```
 
-## Configuring PHP Version for Each Project
+## Configuring PHP Version for Each Project [Experimental]
 
 **phpup automatically detects the required PHP version by inspecting the `composer.json`** file located at the root of your project. However, if you need to set a specific PHP version, you can do so by creating a `.phpuprc` file in your project's root directory.
 

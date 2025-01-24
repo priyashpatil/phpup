@@ -18,5 +18,12 @@ if [ -f .phpuprc ]; then
     done <.phpuprc
 fi
 
-export PATH="/opt/homebrew/opt/php@$php_version/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@$php_version/sbin:$PATH"
+# Check Mac architecture and set appropriate Homebrew path
+if [[ $(uname -m) == "arm64" ]]; then
+    HOMEBREW_PREFIX="/opt/homebrew"
+else
+    HOMEBREW_PREFIX="/usr/local"
+fi
+
+export PATH="$HOMEBREW_PREFIX/opt/php@$php_version/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/php@$php_version/sbin:$PATH"
