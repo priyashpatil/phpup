@@ -37,3 +37,7 @@ source ~/.phpup/source.sh
 ```
 php_version=8.1
 ```
+
+## Development
+
+To enable debug statements add `debug_phpup=1` above the `source ~/.phpup/source.sh` in `.zshrc` or `.bashrc`
