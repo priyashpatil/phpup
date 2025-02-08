@@ -8,7 +8,7 @@ if [ -f composer.json ]; then
         echo "composer.json found, extracting PHP version..."
     fi
     php_version=$(sed -n 's/.*"php": *"\([^"]*\)".*/\1/p' composer.json)
-    php_version=$(echo "$php_version" | tr '|' '\n' | sed 's/\^//' | sort -V | tail -n 1)
+    php_version=$(echo "$php_version" | tr '|' '\n' | sed 's/\^//' | sort -V | head -n 1)
 
     # If env var debug_phpup is set, print PHP version
     if [ "$debug_phpup" -eq 1 ]; then
